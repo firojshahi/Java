@@ -1,0 +1,62 @@
+import java.util.*;
+
+public class ContactManager {
+    static class Contact {
+        String name;
+        String phone;
+
+        Contact(String name, String phone) {
+            this.name = name;
+            this.phone = phone;
+        }
+
+        @Override
+        public String toString() {
+            return "Name: " + name + ", Phone: " + phone;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HashMap<String, Contact> contacts = new HashMap<>();
+
+        // Sample contacts
+        contacts.put("A123", new Contact("Ronaldo", "9898887776"));
+        contacts.put("B201", new Contact("Messi", "9876543210"));
+        contacts.put("C331", new Contact("Neymar", "9823456789"));
+
+        while (true) {
+            System.out.println("\n1. View Contact by ID");
+            System.out.println("2. Add New Contact");
+            System.out.println("3. Exit");
+            System.out.print("Choose option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            if (choice == 1) {
+                System.out.print("Enter ID: ");
+                String id = scanner.nextLine();
+                Contact contact = contacts.get(id);
+                if (contact != null) {
+                    System.out.println(contact);
+                } else {
+                    System.out.println("Contact not found.");
+                }
+            } else if (choice == 2) {
+                System.out.print("Enter ID: ");
+                String id = scanner.nextLine();
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
+                System.out.print("Enter phone: ");
+                String phone = scanner.nextLine();
+                contacts.put(id, new Contact(name, phone));
+                System.out.println("Contact added.");
+            } else if (choice == 3) {
+                System.out.println("Goodbye!");
+                break;
+            } else {
+                System.out.println("Invalid choice.");
+            }
+        }
+    }
+}
